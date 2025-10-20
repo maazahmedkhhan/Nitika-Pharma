@@ -10,11 +10,22 @@ import AddingSmile from './Components/AddingSmile';
 import WhyNikita from './Components/WhyNikita';
 import AboutUs from './Components/AboutUs';
 import Footer from './Components/Footer';
-import GlobalPresence from './Components/GlobalPresence';
-import Brands from './Components/Brands';
-import Testamonials from './Components/Testamonials';
+// import GlobalPresence from './Components/GlobalPresence';
+import MarqueesBrands from './Components/MarqueesBrands';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+// import Testimonials from './Components/Testimonials';
+import GlobalPrecence1 from './Components/GlobalPrecence1';
 
 const Home = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // animation duration (ms)
+      once: true, // animation only once
+      easing: "ease-in-out", // smoothness
+    });
+  }, []);
 
   return (
     <>
@@ -24,11 +35,12 @@ const Home = () => {
       <NumCountUp />
       <RangeOfProducts />
       <AddingSmile />
-      <GlobalPresence />
+      {/* <GlobalPresence /> */}
+      <GlobalPrecence1/>
       <WhyNikita />
       <AboutUs />
-      <Testamonials />
-      <Brands />
+      {/* <Testimonials /> */}
+      <MarqueesBrands />
       <Footer />
     </>
   )
