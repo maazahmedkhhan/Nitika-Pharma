@@ -12,6 +12,7 @@ const GlobalPresence = () => {
           src="/Images/Nitika-Map.webp"
           alt="Global Presence Background"
           className="global-presence-img"
+          
         />
       </div>
     </>
