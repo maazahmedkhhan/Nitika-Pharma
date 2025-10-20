@@ -13,21 +13,23 @@ const rubikMono = Rubik_Mono_One({
 
 const NumCountUp = () => {
   const [startCount, setStartCount] = useState(false);
-  const sectionRef = useRef(null); // ✅ initialized properly
+  const sectionRef = useRef(null);
 
-  // ✅ Initialize AOS once
+  // Initialize AOS only on client
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  // ✅ Observe when section enters view
+  // IntersectionObserver to trigger CountUp
   useEffect(() => {
+    if (!sectionRef.current) return;
+
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setStartCount(true);
-            observer.disconnect(); // stop after triggering once
+            obs.disconnect(); // stop observing after first trigger
           }
         });
       },
@@ -37,12 +39,10 @@ const NumCountUp = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    observer.observe(sectionRef.current);
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      observer.disconnect();
     };
   }, []);
 
@@ -56,9 +56,7 @@ const NumCountUp = () => {
           {/* 1️⃣ Happy Customers */}
           <div className="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
             <div className={`${rubikMono.className} count-number`}>
-              {startCount && (
-                <CountUp start={0} end={1000} duration={3} suffix="+" separator="" />
-              )}
+              {startCount && <CountUp start={0} end={1000} duration={3} suffix="+" separator="" />}
             </div>
             <h6 className="count-label mt-2">Happy Customers</h6>
           </div>
@@ -66,9 +64,7 @@ const NumCountUp = () => {
           {/* 2️⃣ Products */}
           <div className="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
             <div className={`${rubikMono.className} count-number`}>
-              {startCount && (
-                <CountUp start={0} end={250} duration={3} suffix="+" separator="" />
-              )}
+              {startCount && <CountUp start={0} end={250} duration={3} suffix="+" separator="" />}
             </div>
             <h6 className="count-label mt-2">Products</h6>
           </div>
@@ -76,9 +72,7 @@ const NumCountUp = () => {
           {/* 3️⃣ Presence in Countries */}
           <div className="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
             <div className={`${rubikMono.className} count-number`}>
-              {startCount && (
-                <CountUp start={0} end={90} duration={3} suffix="+"  separator="l"/>
-              )}
+              {startCount && <CountUp start={0} end={90} duration={3} suffix="+" separator="" />}
             </div>
             <h6 className="count-label mt-2">Presence in Countries</h6>
           </div>
@@ -86,9 +80,7 @@ const NumCountUp = () => {
           {/* 4️⃣ Export */}
           <div className="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
             <div className={`${rubikMono.className} count-number`}>
-              {startCount && (
-                <CountUp start={0} end={3000} duration={3} suffix="+" separator="" />
-              )}
+              {startCount && <CountUp start={0} end={3000} duration={3} suffix="+" separator="" />}
             </div>
             <h6 className="count-label mt-2">Export in Metric Ton</h6>
           </div>

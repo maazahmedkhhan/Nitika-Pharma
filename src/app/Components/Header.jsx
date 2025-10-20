@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Header = () => {
+  // Load Bootstrap JS only on client
   useEffect(() => {
-    // Import Bootstrap JS only on client
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
 
@@ -196,4 +196,5 @@ const Header = () => {
 };
 
 export default Header;
+
 
