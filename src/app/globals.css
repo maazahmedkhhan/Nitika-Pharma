@@ -64,6 +64,7 @@ body {
   max-width: 320px;
   /* optional: prevent it from being too wide */
   overflow-wrap: break-word;
+  
 }
 
 /* Optional: submenus also wrap */

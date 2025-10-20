@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Header = () => {
+  useEffect(() => {
+    // Import Bootstrap JS only on client
+    import("bootstrap/dist/js/bootstrap.bundle.min.js");
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
       <div className="container-fluid py-2 px-3">
@@ -45,14 +49,14 @@ const Header = () => {
 
           <div className="offcanvas-body p-3 ms-auto">
             <ul className="navbar-nav w-100">
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 <a className="nav-link" href="#">
                   Home
                 </a>
               </li>
 
               {/* About */}
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown mx-2">
                 <a className="nav-link " href="#" data-bs-toggle="dropdown">
                   About Us
                 </a>
@@ -84,7 +88,7 @@ const Header = () => {
               </li>
 
               {/* Products */}
-              <li className="nav-item dropdown text-wrap">
+              <li className="nav-item dropdown text-wrap mx-2">
                 <a className="nav-link " href="#" data-bs-toggle="dropdown">
                   Products
                 </a>
@@ -163,22 +167,22 @@ const Header = () => {
                 </ul>
               </li>
 
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 <a className="nav-link" href="#">
                   Facilities
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 <a className="nav-link" href="#">
                   Gallery
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 <a className="nav-link" href="#">
                   Contacts
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-2">
                 <a className="nav-link" href="#">
                   Blog
                 </a>
@@ -192,3 +196,4 @@ const Header = () => {
 };
 
 export default Header;
+
